@@ -30,7 +30,7 @@ const PORT = parseInt(process.env.PORT || "5000");
 connectDB()
   .then(() => {
     app.listen(PORT, "0.0.0.0", () => {
-      console.info(`AI Code Reviewer running on port ${PORT} https://localhost:5000`);
+      console.info(`AI Code Reviewer running on port ${PORT} http://localhost:5000`);
     });
   })
   .catch((e) => {
