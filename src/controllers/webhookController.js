@@ -40,40 +40,7 @@ const handlePullRequest = async (payload) => {
     const review = await reviewerService.review(diff);
     const comment = reviewerService.formatComment(review);
 
-    const marker ="automated-review-comment";
-    const reviewbody=`${marker}\n${comment}`;
-
-    const existingComment = await githubService.findAutomatedReviewComment(repoName,prNumber,marker,token);
-
-    if(extingComment){
-      await githubService.updateReviewComment(repoNmae,prNumber, existingComment.id,reviewbody,token);
-    }
-    else{
-    
-      await githubService.postReviewComment(repoName, prNumber, reviewbody, token);
-    }
-
-
-    await Review.findOneAndUpdate({repo_name:repoNmae,
-      pr_number:prNumber,},
-      {$set: {
-        review_text:commnet,
-        score : review.score|| "N/A",
-        severity: review.severity|| "low",
-        created_at :new Date().toISOString(),
-      },
-    },
-
-      {
-        upsert:true,new:true,runValidators:ture
-      }
-
-    );
-
-
-
-    
-
+    await githubService.postReviewComment(repoName, prNumber, comment, token);
 
     await Review.create({
       repo_name: repoName, pr_number: prNumber,

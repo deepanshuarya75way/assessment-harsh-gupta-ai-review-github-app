@@ -9,12 +9,12 @@
     "dev": "nodemon src/app.js"
   },
   "dependencies": {
+    "@google/genai": "^2.31.0",
     "@octokit/auth-app": "^7.1.1",
     "@octokit/rest": "^21.0.2",
     "cors": "^2.8.5",
     "dotenv": "^16.6.1",
     "express": "^4.22.3",
-    "groq-sdk": "^0.3.3",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.24.7"
   },

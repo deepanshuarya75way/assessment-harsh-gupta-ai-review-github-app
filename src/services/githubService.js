@@ -30,28 +30,6 @@ class GitHubService {
     return typeof data === "string" ? data : JSON.stringify(data);
   }
 
-  async findAutomatedReviewComment(repoNmae,prName,token,marker){
-    const [owner,repo]=repoNmae.split("/");
-    const Octokit=new Octokit({auth:token});
-    const comments= await octokit.paginate(octokit,issue.listComments,{
-      owner,repo,issue_number:prNumber,
-      per_page:100,
-    });
-    return comments.find((comment)=>{comment.body?.includes(marker)}) || null;
-  }
-  async updateReviewComment(repoNmae,prName,commentId,body,token){
-    const [owner,repo]=repoName.split("/");
-    const octokit=new Octokit({auth:token});
-    await octokit.issues.updateCommnet({
-      owner,
-      repo,
-      commnet_id:commentId,
-      body,
-    });
-    
-  }
-  
-
   async postReviewComment(repoName, prNumber, body, token) {
     const [owner, repo] = repoName.split("/");
     const octokit = new Octokit({ auth: token });
